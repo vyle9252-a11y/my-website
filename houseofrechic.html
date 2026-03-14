@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Rechic</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/CSS/index.css" />
+    <style>
+        /* --- General and Common Styling --- */
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        /* --- Header --- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+    text-align: center
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 250px;
+    
+}
+
+.nav-left a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 6px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-left a:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+/* Container chính cho menu dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Các danh mục con */
+.dropdown-content {
+    display: none; /* Ẩn menu con mặc định */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Định dạng các đường link trong menu con */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; /* Hiển thị mỗi link trên một hàng riêng */
+    text-align: left;
+}
+
+/* Hiệu ứng khi di chuột vào link con */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Hiển thị menu con khi di chuột vào mục cha */
+.dropdown:hover .dropdown-content {
+    display: block; /* Hiển thị menu con */
+}
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo img {
+    height: 36px;
+    display: block;
+}
+
+.search-box {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box input {
+    display: none;
+}
+
+.search-box .fa-magnifying-glass {
+    font-size: 18px;
+    color: #777;
+    cursor: pointer;
+}
+
+.icon-btn {
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    position: relative;
+}
+
+.user-info .user-name {
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.user-info .user-name i {
+    font-size: 14px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    min-width: 150px;
+    z-index: 10;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.user-dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+.user-info.active .user-dropdown {
+    display: block;
+}
+
+.auth-buttons button {
+    background: none;
+    border: 1.5px solid #333;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+}
+
+.auth-buttons button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* --- Banner --- */
+.banner {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.banner .carousel-item img {
+    /* Set a max-height to prevent it from getting too tall,
+       but remove the fixed height to let it scale proportionally. */
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    max-height: 500px; /* Optional: Adjust this value as needed */
+}
+        /* --- Our Story Section --- */
+        .story-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .story-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-item img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .story-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.0);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transition: background-color 0.5s ease, opacity 0.5s ease;
+            box-sizing: border-box;
+        }
+
+        .story-item:hover .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: 1;
+        }
+
+        .overlay-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .overlay-text {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* --- Store Locations Section --- */
+        .stores-section {
+            background-color: #f8f8f8;
+            text-align: center
+            
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .store-item {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .store-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .store-info {
+            padding: 20px;
+        }
+
+        .store-info h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .store-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .store-list {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .store-list h4 {
+            margin-top: 0;
+        }
+
+        .store-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .store-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .contact-info-column,
+        .contact-form-column {
+            flex-basis: 50%;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .contact-title::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background-color: #000;
+            transform: translateY(-50%);
+        }
+
+        .contact-details p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .contact-details a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .social-icons-contact {
+            margin-top: 20px;
+        }
+
+        .social-icons-contact img {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons-contact img:hover {
+            opacity: 1;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        .recaptcha {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-button {
+            background-color: #333;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            align-self: flex-start;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+        }
+
+/* --- Footer --- */
+.footer-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+.footer-column {
+    padding: 0 10px;
+    border-right: 1px solid #ccc;
+}
+
+.footer-column:last-child {
+    border-right: none;
+}
+
+.footer-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 8px;
+}
+
+.footer-column a, .footer-text {
+    color: #555;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #000;
+}
+
+.subscription-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subscription-form {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.subscription-form input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.subscription-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    font-size: 24px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #000;
+
+        }
+
+        /* --- Modal Styling --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #d4a762;
+            padding-bottom: 10px;
+        }
+
+        .modal-content p {
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #d4a762;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-form-column {
+                margin-top: 40px;
+            }
+
+            .form-title {
+                text-align: left;
+            }
+
+            .story-grid, .stores-grid, .footer-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-grid, .stores-grid, .footer-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-left" aria-label="Menu chính">
+            <a href="/index.html">TRANG CHỦ</a>
+            <a href="/Bestseller.html">BESTSELLER</a>
+            <div class="dropdown">
+                <a href="#" class="category-link" data-category="all">ALBUM</a>
+                <div class="dropdown-content">
+                    <a href="/Áo.html" class="category-link" data-category="Áo">Áo</a>
+                    <a href="/Váy.html" class="category-link" data-category="Váy">Váy</a>
+                    <a href="/Set.html" class="category-link" data-category="Set">Set</a>
+                    <a href="/Quan.html" class="category-link" data-category="Quần">Quần</a>
+                </div>
+            </div>
+            <a href="//houseofrechic.html">ABOUT US</a>
+        </nav>
+        <div class="logo">
+            <a href="#" aria-label="Trang chủ">
+           <img src="https://rechicbrand.com/wp-content/uploads/2024/06/logo.png" class="d-block img-fluid" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="search-box" role="search" aria-label="Tìm kiếm">
+                <i class="fa-solid fa-magnifying-glass" title="Tìm kiếm"></i>
+            </div>
+            <div class="icon-btn cart-icon" aria-label="Giỏ hàng" tabindex="0" role="button">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div class="cart-count" aria-live="polite" aria-atomic="true">3</div>
+            </div>
+            <div class="user-info" tabindex="0" aria-haspopup="true" aria-expanded="false"
+                aria-label="Thông tin khách hàng">
+                <div class="user-name" id="userNameBtn">
+                    <i class="fa-solid fa-user"></i><i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="user-dropdown" role="menu" aria-labelledby="userNameBtn">
+                    <a href="#" role="menuitem">Tài khoản của tôi</a>
+                    <a href="#" role="menuitem">Đơn hàng</a>
+                    <a href="#" role="menuitem">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Banner Section -->
+        <div class="banner">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/BANNER-WEB-1920-x-790-1.jpg" class="d-block img-fluid" alt="Banner 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/BANNER-WEB-1920-x-790-3.jpg" class="d-block img-fluid" alt="Banner 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/1920X760.png"
+                            class="d-block img-fluid" alt="Banner 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Our Story Section -->
+        <section class="story-section">
+            <h2>Câu chuyện của chúng tôi</h2>
+            <div class="story-grid">
+                <div class="story-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2025/02/8-2.jpg" alt="Dễ dàng thanh lịch và linh hoạt">
+                    <div class="overlay">
+                        <p class="overlay-title">Dễ dàng thanh lịch và linh hoạt</p>
+                        <p class="overlay-text">Về cốt lõi, Rechic hài hòa sự nữ tính hiện đại với thời trang có chức năng cao. Mọi cách trang trí phức tạp, lựa chọn vải chất lượng cao, may đo tỉ mỉ và bảng màu tinh tế đều được tuyển chọn chu đáo để tạo ra những thiết kế tuyệt đẹp phù hợp với nhiều dịp khác nhau. Từ trang phục công sở thanh lịch và trang phục giản dị sang trọng đến váy dạ hội quyến rũ, Rechic đảm bảo sự đa dạng, cho phép phụ nữ xây dựng một tủ quần áo vừa mang tính cá nhân vừa mang tính thời trang.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2025/01/38_136db5828cde41fab585ca6bfef49c01.jpg" alt="Vượt qua biên giới, vươn ra thế giới">
+                    <div class="overlay">
+                        <p class="overlay-title">Vượt qua biên giới, vươn ra thế giới</p>
+                        <p class="overlay-text">Rechic không chỉ được đón nhận nồng nhiệt tại thị trường châu Á mà còn trở thành một thương hiệu toàn cầu được yêu mến, chiếm được cảm tình của những người yêu thời trang và biểu tượng làm đẹp trên toàn thế giới. Các thiết kế của nó đã tô điểm cho các sự kiện uy tín, được mặc bởi các KOL, nữ hoàng sắc đẹp và người mẫu hàng đầu nổi tiếng từ Thái Lan, Singapore, Nhật Bản, Hàn Quốc, Mỹ, Pháp và hơn thế nữa. Đây là minh chứng cho ảnh hưởng văn hóa và sức hấp dẫn không thể phủ nhận của thương hiệu, củng cố tầm vóc toàn cầu của Rechic trong ngành thời trang.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2024/11/13_454d540bc2f540459fcd66d71d64db23.png" alt="Cam kết về tính bền vững và chất lượng">
+                    <div class="overlay">
+                        <p class="overlay-title">Cam kết về tính bền vững và chất lượng</p>
+                        <p class="overlay-text">Chất lượng là ưu tiên hàng đầu trong tầm nhìn của Rechic, đảm bảo rằng mỗi bộ quần áo trở thành người bạn đồng hành đáng tin cậy nhất của người phụ nữ. Từ việc lựa chọn chất liệu cao cấp đến thực hiện tay nghề thủ công tỉ mỉ, mỗi món đồ đều thể hiện niềm đam mê lâu dài của thương hiệu đối với thời trang và cam kết về giá trị lâu dài. Tại Rechic, phong cách không chỉ là một xu hướng thoáng qua mà còn là dấu ấn xác định bản sắc của người phụ nữ. Bên cạnh việc đi trước thời trang hiện đại, Rechic liên tục đề cao sự sang trọng vượt thời gian, trao quyền cho phụ nữ tỏa sáng theo cách độc đáo của riêng họ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Locations Section -->
+        <section class="stores-section">
+            <h2>Cửa hàng</h2>
+            <div class="stores-grid">
+                <div class="store-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2024/09/STORE-3x2-1-2048x1365.jpg" alt="Store 1">
+                    <div class="store-info">
+                        <h4>RECHIC HÙNG VƯƠNG PLAZA</h4>
+                        <p>126 Hồng Bàng, Phường 12, Quận 5, TP.Hồ Chí Minh, Việt Nam</p>
+                        <p>Opening 10:00 AM - 10:00 PM</p>
+                        <p>02873 099 579</p>
+                    </div>
+                </div>
+                <div class="store-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2024/06/STORE-3x2-6-1-2048x1365.jpg" alt="Store 2">
+                    <div class="store-info">
+                        <h4>RECHIC AEON MALL TÂN PHÚ</h4>
+                        <p>30 Tân Thắng, Phường Sơn Kỳ, Quận Tân Phú, TP.Hồ Chí Minh, Việt Nam</p>
+                        <p>Opening 10:00 AM - 10:00 PM</p>
+                        <p>02873 001 148</p>
+                    </div>
+                </div>
+                <div class="store-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2024/06/STORE-3x2-3.jpg" alt="Store 3">
+                    <div class="store-info">
+                        <h4>RECHIC AEON MALL BÌNH TÂN</h4>
+                        <p>1 Đường Số 17A, Phường Bình Trị Đông B, Quận Bình Tân, Hồ Chí Minh, Việt Nam</p>
+                        <p>Opening 10:00 AM - 10:00 PM</p>
+                        <p>02873 000 268</p>
+                    </div>
+                </div>
+                <div class="store-item">
+                    <img src="https://rechicbrand.com/wp-content/uploads/2024/06/Phan-Chu-Trinh-Da-Nang-2048x1151.jpg" alt="Store 4">
+                    <div class="store-info">
+                        <h4>RECHIC NGUYỄN TRÃI</h4>
+                        <p>63 Nguyễn Trãi, Phường Bến Thành, Quận 1, TP.Hồ Chí Minh, Việt Nam</p>
+                        <p>Opening 10:00 AM - 10:00 PM</p>
+                        <p>02873 001 140</p>
+                    </div>
+                </div>
+            </div>
+            <div class="store-list">
+            <h2>Các địa chỉ cửa hàng khác</h2>
+                <ul>
+                    <li><strong>RECHIC BÀ TRIỆU:</strong> 178 Bà Triệu, Phường Nguyễn Du, Quận Hai Bà Trưng, TP.Hà Nội, Việt Nam - ĐT: 02873 099 579</li>
+                    <li><strong>RECHIC LÊ VĂN SỸ:</strong> 336 Lê Văn Sỹ, Phường 14, Quận 3, TP.Hồ Chí Minh, Việt Nam - ĐT: 02873 001 143</li>
+                    <li><strong>RECHIC TAKASHIMAYA:</strong> 92-94 Nam Kỳ Khởi Nghĩa, Phường Bến Nghé, Quận 1, TP.Hồ Chí Minh, Việt Nam - ĐT: 0941 904 223</li>
+                    <li><strong>RECHIC AEON MALL BINH DUONG:</strong> 1st Floor, F26 - Binh Duong Boulevard, Thuan Giao, Thuan An, Binh Duong 700000, Vietnam - ĐT: 1900 633 494</li>
+                    <li><strong>RECHIC LÊ DUẨN:</strong> 292 Lê Duẩn, phường Chính Gián, quận Thanh Khê, Đà Nẵng - ĐT: 0908 000 795</li>
+                    <li><strong>RECHIC LÝ TỰ TRỌNG:</strong> 26 Lý Tự Trọng, Phường Bến Nghé, Quận 1, TP.Hồ Chí Minh, Việt Nam - ĐT: 02873 001 141</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info-column">
+                    <h2 class="contact-title">LIÊN HỆ</h2>
+                    <div class="contact-details">
+                        <p><strong>Hotline: 19006067</strong></p>
+                        <p><strong>Email:</strong> houseofrechic@gmail.com</p>
+                        <p><strong>Website:</strong> <a href="https://rechicbrand.com/en/international-wholesale/" target="_blank">https://rechicbrand.com/en/international-wholesale/</a></p>
+                        <p><strong>Fanpage:</strong> <a href="https://facebook.com/rechic.vn" target="_blank">https://facebook.com/rechic.vn</a></p>
+                    </div>
+                </div>
+                <div class="contact-form-column">
+                    <h3 class="form-title">Liên hệ với chúng tôi</h3>
+                    <form action="#" method="post" class="contact-form">
+                        <select class="form-input">
+                            <option>Dịch vụ Khách hàng</option>
+                            <option>Hợp tác</option>
+                            <option>Phản hồi</option>
+                        </select>
+                        <input type="email" class="form-input" placeholder="your@email.com" required>
+                        <textarea class="form-input" rows="5" placeholder="Chúng tôi có thể giúp bạn bằng cách nào?"></textarea>
+                        <div class="recaptcha">
+                            <input type="checkbox" id="recaptcha-checkbox">
+                            <label for="recaptcha-checkbox">Tôi không phải là người máy</label>
+                        </div>
+                        <button type="submit" class="submit-button">Gửi</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-row">
+        <div class="footer-column">
+            <h4 class="footer-title">House of Rechic</h4>
+            <ul>
+                <li><a href="/houseofrechic.html" class="footer-link" data-content-id="our-story">Câu chuyện của chúng tôi</a></li>
+                <li><a href="/houseofrechic.html" class="footer-link" data-content-id="store-locations">Cửa hàng</a></li>
+                <li><a href="/houseofrechic.html" class="footer-link" data-content-id="contact-section">Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4 class="footer-title">Sản phẩm</h4>
+            <ul>
+                <li><a href="/Áo.html" class="footer-link" data-content-id="áo">Áo</a></li>
+                <li><a href="/Váy.html" class="footer-link" data-content-id="váy">Váy</a></li>
+                <li><a href="/Quan.html" class="footer-link" data-content-id="quần">Quần</a></li>
+                <li><a href="/Set.html" class="footer-link" data-content-id="set">Set</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul>
+                <li><a href="/chinhsach.html" class="footer-link" data-content-id="payment-policy">Chính sách thanh toán</a></li>
+                <li><a href="/chinhsach.html" class="footer-link" data-content-id="shipping-policy">Chính sách giao hàng</a></li>
+                <li><a href="/chinhsach.html" class="footer-link" data-content-id="return-policy">Chính sách hoàn trả</a></li>
+            </ul>
+        </div>
+        <div class="footer-column subscription-column">
+            <h4 class="footer-title">Đăng ký nhận bản tin của chúng tôi!</h4>
+            <div class="subscription-form">
+                <input type="email" placeholder="Nhập email của bạn">
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="content-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerLinks = document.querySelectorAll('.footer-link');
+            const modal = document.getElementById('content-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeBtn = document.querySelector('.close-btn');
+
+            const contentData = {
+                'our-story': {
+                    title: "Câu chuyện của chúng tôi",
+                    body: `
+                        <div class="story-modal-content">
+                            <h3>Dễ dàng thanh lịch và linh hoạt</h3>
+                            <p>Về cốt lõi, Rechic hài hòa sự nữ tính hiện đại với thời trang có chức năng cao. Mọi cách trang trí phức tạp, lựa chọn vải chất lượng cao, may đo tỉ mỉ và bảng màu tinh tế đều được tuyển chọn chu đáo để tạo ra những thiết kế tuyệt đẹp phù hợp với nhiều dịp khác nhau. Từ trang phục công sở thanh lịch và trang phục giản dị sang trọng đến váy dạ hội quyến rũ, Rechic đảm bảo sự đa dạng, cho phép phụ nữ xây dựng một tủ quần áo vừa mang tính cá nhân vừa mang tính thời trang.</p>
+                            <img src="https://rechicbrand.com/wp-content/uploads/2024/02/rechic_vertical_1.jpg" alt="Váy thanh lịch" style="width:100%; height:auto; margin-bottom: 20px;">
+                            
+                            <h3>Vượt qua biên giới, vươn ra thế giới</h3>
+                            <p>Rechic không chỉ được đón nhận nồng nhiệt tại thị trường châu Á mà còn trở thành một thương hiệu toàn cầu được yêu mến, chiếm được cảm tình của những người yêu thời trang và biểu tượng làm đẹp trên toàn thế giới. Các thiết kế của nó đã tô điểm cho các sự kiện uy tín, được mặc bởi các KOL, nữ hoàng sắc đẹp và người mẫu hàng đầu nổi tiếng từ Thái Lan, Singapore, Nhật Bản, Hàn Quốc, Mỹ, Pháp và hơn thế nữa. Đây là minh chứng cho ảnh hưởng văn hóa và sức hấp dẫn không thể phủ nhận của thương hiệu, củng cố tầm vóc toàn cầu của Rechic trong ngành thời trang.</p>
+                            <img src="http://googleusercontent.com/file_content/0" alt="Váy dạ hội" style="width:100%; height:auto; margin-bottom: 20px;">
+                            <h3>Cam kết về tính bền vững và chất lượng</h3>
+                            <p>Chất lượng là ưu tiên hàng đầu trong tầm nhìn của Rechic, đảm bảo rằng mỗi bộ quần áo trở thành người bạn đồng hành đáng tin cậy nhất của người phụ nữ. Từ việc lựa chọn chất liệu cao cấp đến thực hiện tay nghề thủ công tỉ mỉ, mỗi món đồ đều thể hiện niềm đam mê lâu dài của thương hiệu đối với thời trang và cam kết về giá trị lâu dài. Tại Rechic, phong cách không chỉ là một xu hướng thoáng qua mà còn là dấu ấn xác định bản sắc của người phụ nữ. Bên cạnh việc đi trước thời trang hiện đại, Rechic liên tục đề cao sự sang trọng vượt thời gian, trao quyền cho phụ nữ tỏa sáng theo cách độc đáo của riêng họ.</p>
+                            <img src="https://rechicbrand.com/wp-content/uploads/2024/02/rechic_vertical_3.jpg" alt="Áo sơ mi" style="width:100%; height:auto; margin-bottom: 20px;">
+                        </div>
+                    `
+                },
+                'store-locations': {
+                    title: "Cửa hàng",
+                    body: `
+                        <div class="store-modal-content">
+                            <div class="store-item-modal">
+                                <h4>RECHIC HÙNG VƯƠNG PLAZA</h4>
+                                <img src="https://rechicbrand.com/wp-content/uploads/2024/09/STORE-3x2-1-2048x1365.jpg" alt="Store Hùng Vương Plaza" style="width:100%; height:auto; margin-bottom: 10px;">
+                                <p>126 Hồng Bàng, Phường 12, Quận 5, TP.Hồ Chí Minh, Việt Nam</p>
+                                <p>Giờ mở cửa: 10:00 AM - 10:00 PM</p>
+                                <p>Điện thoại: 02873 099 579</p>
+                            </div>
+                            <div class="store-item-modal">
+                                <h4>RECHIC AEON MALL TÂN PHÚ</h4>
+                                <img src="https://rechicbrand.com/wp-content/uploads/2024/06/STORE-3x2-6-1-2048x1365.jpg" alt="Store Aeon Mall Tân Phú" style="width:100%; height:auto; margin-bottom: 10px;">
+                                <p>30 Tân Thắng, Phường Sơn Kỳ, Quận Tân Phú, TP.Hồ Chí Minh, Việt Nam</p>
+                                <p>Giờ mở cửa: 10:00 AM - 10:00 PM</p>
+                                <p>Điện thoại: 02873 001 148</p>
+                            </div>
+                            <div class="store-item-modal">
+                                <h4>RECHIC AEON MALL BÌNH TÂN</h4>
+                                <img src="https://rechicbrand.com/wp-content/uploads/2024/06/STORE-3x2-3.jpg" alt="Store Aeon Mall Bình Tân" style="width:100%; height:auto; margin-bottom: 10px;">
+                                <p>1 Đường Số 17A, Phường Bình Trị Đông B, Quận Bình Tân, TP.Hồ Chí Minh, Việt Nam</p>
+                                <p>Giờ mở cửa: 10:00 AM - 10:00 PM</p>
+                                <p>Điện thoại: 02873 000 268</p>
+                            </div>
+                            <div class="store-item-modal">
+                                <h4>RECHIC NGUYỄN TRÃI</h4>
+                                <img src="https://rechicbrand.com/wp-content/uploads/2024/06/Phan-Chu-Trinh-Da-Nang-2048x1151.jpg" alt="Store Nguyễn Trãi" style="width:100%; height:auto; margin-bottom: 10px;">
+                                <p>63 Nguyễn Trãi, Phường Bến Thành, Quận 1, TP.Hồ Chí Minh, Việt Nam</p>
+                                <p>Giờ mở cửa: 10:00 AM - 10:00 PM</p>
+                                <p>Điện thoại: 02873 001 140</p>
+                            </div>
+                            <ul class="store-list-modal" style="list-style-type: none; padding: 0;">
+                                <li><strong>RECHIC BÀ TRIỆU:</strong> 178 Bà Triệu, Phường Nguyễn Du, Quận Hai Bà Trưng, TP.Hà Nội, Việt Nam - ĐT: 02873 099 579</li>
+                                <li><strong>RECHIC LÊ VĂN SỸ:</strong> 336 Lê Văn Sỹ, Phường 14, Quận 3, TP.Hồ Chí Minh, Việt Nam - ĐT: 02873 001 143</li>
+                                <li><strong>RECHIC TAKASHIMAYA:</strong> 92-94 Nam Kỳ Khởi Nghĩa, Phường Bến Nghé, Quận 1, TP.Hồ Chí Minh, Việt Nam - ĐT: 0941 904 223</li>
+                                <li><strong>RECHIC AEON MALL BINH DUONG:</strong> 1st Floor, F26 - Binh Duong Boulevard, Thuan Giao, Thuan An, Binh Duong 700000, Vietnam - ĐT: 1900 633 494</li>
+                                <li><strong>RECHIC LÊ DUẨN:</strong> 292 Lê Duẩn, phường Chính Gián, quận Thanh Khê, Đà Nẵng - ĐT: 0908 000 795</li>
+                                <li><strong>RECHIC LÝ TỰ TRỌNG:</strong> 26 Lý Tự Trọng, Phường Bến Nghé, Quận 1, TP.Hồ Chí Minh, Việt Nam - ĐT: 02873 001 141</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                'payment-policy': {
+                    title: "Chính sách thanh toán",
+                    body: "<p>Chúng tôi chấp nhận các phương thức thanh toán sau:</p><ul><li>Thanh toán khi nhận hàng (COD)</li><li>Thẻ tín dụng/ghi nợ (Visa, Mastercard, JCB)</li><li>Chuyển khoản ngân hàng</li><li>Ví điện tử (Momo, ZaloPay, VNPay)</li></ul>"
+                },
+                'shipping-policy': {
+                    title: "Chính sách giao hàng",
+                    body: "<p>Đơn hàng sẽ được xử lý và giao trong vòng 2-5 ngày làm việc. Phí giao hàng sẽ được tính toán dựa trên địa chỉ và trọng lượng đơn hàng của bạn.</p><p>Chúng tôi cung cấp dịch vụ giao hàng tiêu chuẩn và giao hàng nhanh. Chi tiết về thời gian và phí vận chuyển sẽ được hiển thị khi bạn tiến hành thanh toán.</p>"
+                },
+                'return-policy': {
+                    title: "Chính sách hoàn trả",
+                    body: "<p>Bạn có thể hoàn trả sản phẩm trong vòng 7 ngày kể từ ngày nhận hàng nếu sản phẩm bị lỗi do nhà sản xuất hoặc không đúng với mô tả.</p><p>Sản phẩm hoàn trả phải còn nguyên tem mác, chưa qua sử dụng và có đầy đủ hóa đơn mua hàng.</p>"
+                }
+            };
+
+            footerLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetId = link.getAttribute('data-content-id');
+                    let targetElement;
+
+                    if (targetId === 'our-story') {
+                        targetElement = document.querySelector('.story-section');
+                    } else if (targetId === 'store-locations') {
+                        targetElement = document.querySelector('.stores-section');
+                    } else if (targetId === 'contact-section') {
+                        targetElement = document.querySelector('.contact-section');
+                    } else {
+                        const content = contentData[targetId];
+                        if (content) {
+                            modalTitle.textContent = content.title;
+                            modalBody.innerHTML = content.body;
+                            modal.style.display = 'flex';
+                        }
+                        return;
+                    }
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

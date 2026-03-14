@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chính sách và Điều khoản</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/CSS/index.css" />
+    <style>
+        /* CSS cho nội dung chính trang chính sách */
+        .policy-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .policy-container h1, .policy-container h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+            text-transform: uppercase;
+        }
+        
+        .policy-container h1 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .policy-container h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .policy-container p, .policy-container li {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .policy-container ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+
+        .policy-container a {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .policy-container strong {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-left" aria-label="Menu chính">
+            <a href="/index.html">TRANG CHỦ</a>
+            <a href="/Bestseller.html">BESTSELLER</a>
+            <div class="dropdown">
+                <a href="#" class="category-link" data-category="all">ALBUM</a>
+                <div class="dropdown-content">
+                    <a href="/Áo.html" class="category-link" data-category="Áo">Áo</a>
+                    <a href="/Váy.html" class="category-link" data-category="Váy">Váy</a>
+                    <a href="/Set.html" class="category-link" data-category="Set">Set</a>
+                    <a href="/Quan.html" class="category-link" data-category="Quần">Quần</a>
+                </div>
+            </div>
+            <a href="/houseofrechic.html">ABOUT US</a>
+        </nav>
+        <div class="logo">
+            <a href="#" aria-label="Trang chủ">
+           <img src="https://rechicbrand.com/wp-content/uploads/2024/06/logo.png" class="d-block img-fluid" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="search-box" role="search" aria-label="Tìm kiếm">
+                <i class="fa-solid fa-magnifying-glass" title="Tìm kiếm"></i>
+            </div>
+            <div class="icon-btn cart-icon" aria-label="Giỏ hàng" tabindex="0" role="button">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div class="cart-count" aria-live="polite" aria-atomic="true">0</div>
+            </div>
+            <div class="user-info" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Thông tin khách hàng">
+                <div class="user-name" id="userNameBtn">
+                    <i class="fa-solid fa-user"></i><i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="user-dropdown" role="menu" aria-labelledby="userNameBtn">
+                    <a href="#" role="menuitem">Tài khoản của tôi</a>
+                    <a href="#" role="menuitem">Đơn hàng</a>
+                    <a href="#" role="menuitem">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="addToCartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Thêm vào giỏ hàng thành công!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">GIỎ HÀNG CỦA BẠN</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-header-table d-none d-md-grid">
+                        <span>Sản phẩm</span>
+                        <span>Thông tin sản phẩm</span>
+                        <span>Đơn giá</span>
+                        <span>Số lượng</span>
+                        <span>Thành tiền</span>
+                        <span>Xóa</span>
+                    </div>
+                    <div class="cart-items" id="cartItemsContainer">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+                    <div class="cart-summary d-flex flex-column align-items-end">
+                        <div class="d-flex justify-content-between w-100">
+                            <span class="fw-bold">Tổng tiền:</span>
+                            <span class="fw-bold fs-5" id="totalPrice">0₫</span>
+                        </div>
+                        <button class="btn btn-dark mt-2" id="checkoutBtn">THANH TOÁN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="banner">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/BANNER-WEB-1920-x-790-1.jpg" class="d-block img-fluid" alt="Banner 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/BANNER-WEB-1920-x-790-3.jpg" class="d-block img-fluid" alt="Banner 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://rechicbrand.com/wp-content/uploads/2025/04/1920X760.png"
+                            class="d-block img-fluid" alt="Banner 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <section class="policy-section">
+            <div class="policy-container">
+                <h1>CHÍNH SÁCH THANH TOÁN</h1>
+                <p>Để mang đến trải nghiệm mua sắm tiện lợi và an toàn nhất, chúng tôi tự hào cung cấp đa dạng các hình thức thanh toán. Quý khách có thể hoàn toàn yên tâm lựa chọn phương thức phù hợp nhất với mình. Tại cửa hàng, quý khách có thể thanh toán trực tiếp bằng tiền mặt hoặc quẹt thẻ qua hệ thống máy POS, hỗ trợ mọi loại thẻ ngân hàng và các ví điện tử phổ biến. Đối với các đơn hàng trực tuyến qua website, chúng tôi chấp nhận thanh toán khi nhận hàng (COD) – một lựa chọn an toàn tuyệt đối, chỉ cần thanh toán khi sản phẩm đã đến tay. Ngoài ra, quý khách có thể chọn thanh toán trực tuyến qua cổng thanh toán bảo mật, hỗ trợ thẻ tín dụng/thẻ ghi nợ quốc tế (Visa, Mastercard, JCB) và thẻ ATM nội địa. Mọi thông tin giao dịch của quý khách đều được mã hóa và bảo vệ bằng công nghệ SSL tiên tiến, đảm bảo sự riêng tư và an toàn tuyệt đối.</p>
+                
+                <h1>CHÍNH SÁCH GIAO HÀNG</h1>
+                <p>Chúng tôi cam kết xử lý và giao hàng tới quý khách với sự chuyên nghiệp và cẩn trọng nhất. Ngay sau khi đơn hàng được xác nhận, đội ngũ của chúng tôi sẽ tiến hành kiểm tra kỹ lưỡng, đóng gói tỉ mỉ trong bao bì sang trọng để đảm bảo sản phẩm đến tay quý khách trong trạng thái hoàn hảo nhất. Thời gian giao hàng dự kiến là từ <strong>2-5 ngày làm việc</strong> đối với các khu vực trung tâm và <strong>5-7 ngày</strong> đối với các khu vực ngoại thành, tỉnh lẻ. Chúng tôi luôn nỗ lực tối đa để rút ngắn thời gian này. Chi phí vận chuyển sẽ được hiển thị rõ ràng khi quý khách tiến hành thanh toán. Trong trường hợp có bất kỳ sự chậm trễ ngoài mong muốn do các yếu tố khách quan, chúng tôi sẽ chủ động liên hệ và thông báo kịp thời để quý khách nắm rõ thông tin.</p>
+                
+                <h1>CHÍNH SÁCH HOÀN TRẢ</h1>
+                <p>Với niềm tin vào chất lượng sản phẩm và mong muốn quý khách luôn hài lòng tuyệt đối, chúng tôi áp dụng chính sách đổi trả linh hoạt. Quý khách có thể đổi hoặc trả sản phẩm trong vòng **7 ngày** kể từ ngày nhận hàng. Để quy trình diễn ra thuận lợi, sản phẩm cần đảm bảo còn nguyên tem mác, chưa qua sử dụng, chưa giặt ủi và còn nguyên vẹn bao bì gốc. Việc đổi trả sẽ được hỗ trợ tận tình khi quý khách cung cấp hóa đơn hoặc chứng từ mua hàng hợp lệ. Vui lòng liên hệ với bộ phận chăm sóc khách hàng của chúng tôi để được hướng dẫn chi tiết về quy trình và địa điểm gửi hàng. Chúng tôi sẽ nhanh chóng xử lý yêu cầu và hoàn tiền hoặc gửi sản phẩm thay thế ngay khi nhận được hàng hoàn trả và kiểm tra đủ điều kiện.</p>
+            </div>
+        </section>
+
+        <section class="feature-block">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-rotate-left feature-icon"></i>
+                        <h3 class="feature-title">7 NGÀY ĐỔI SẢN PHẨM</h3>
+                        <p class="feature-text">Đổi trả sản phẩm trong 7 ngày</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-phone feature-icon"></i>
+                        <h3 class="feature-title">HOTLINE 1900 3060</h3>
+                        <p class="feature-text">8h00 - 17h00, T2 - T7 (Giờ hành chính)</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-store feature-icon"></i>
+                        <h3 class="feature-title">HỆ THỐNG CỬA HÀNG</h3>
+                        <p class="feature-text">120 cửa hàng trên toàn hệ thống</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-truck feature-icon"></i>
+                        <h3 class="feature-title">VẬN CHUYỂN</h3>
+                        <p class="feature-text">Đồng giá 30k toàn quốc</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-row">
+            <div class="footer-column">
+                <h4 class="footer-title">House of Rechic</h4>
+                <ul>
+                    <li><a href="/houseofrechic.html">Câu chuyện của chúng tôi</a></li>
+                    <li><a href="/houseofrechic.html">Cửa hàng</a></li>
+                    <li><a href="/houseofrechic.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Sản phẩm</h4>
+                <ul>
+                    <li><a href="/Áo.html" class="footer-link" data-content-id="áo">Áo</a></li>
+                    <li><a href="/Váy.html" class="footer-link" data-content-id="váy">Váy</a></li>
+                    <li><a href="/Quan.html" class="footer-link" data-content-id="quần">Quần</a></li>
+                    <li><a href="/Set.html" class="footer-link" data-content-id="set">Set</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">CHÍNH SÁCH</h4>
+                <ul>
+                    <li><a href="/chinhsach.html">Chính sách thanh toán</a></li>
+                    <li><a href="/chinhsach.html">Chính sách giao hàng</a></li>
+                    <li><a href="/chinhsach.html">Chính sách hoàn trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-column subscription-column">
+                <h4 class="footer-title">Đăng ký nhận bản tin của chúng tôi!</h4>
+                <div class="subscription-form">
+                    <input type="email" placeholder="Nhập email của bạn">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1AqhHpTZ77/?mibextid=wwXIfr"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/JS/RECHIC.js"></script>
+</body>
+</html>
